@@ -21,7 +21,8 @@ def verify_gh_signature(request: request, secret: str) -> bool:
     signature_header = request.headers["x-hub-signature-256"]
     hash_object = hmac.new(
         secret.encode("utf-8"),
-        msg=request.data, digestmod=hashlib.sha256
+        msg=request.get_data(),
+        digestmod=hashlib.sha256
     )
     expected_signature = "sha256=" + hash_object.hexdigest()
     if not hmac.compare_digest(expected_signature, signature_header):
@@ -42,9 +43,7 @@ def webhook(path: str) -> str:
         for hook in cfg["webhooks"]:
             if (hook["path"] == request.path):
                 if (validate_request(hook, request)):
-                    print(1)
                     return ("ok", 200)
-    print(0)
     return ("uh oh", 400)
 
 app.run(host=cfg["hostname"], port=cfg["port"], debug=True)
