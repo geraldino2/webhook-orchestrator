@@ -1,11 +1,15 @@
 hostname: "0.0.0.0"
 port: 8000
 webhooks:
-  - path: "root"
+  - path: "/root"
     type: "github"
     secret: "GITHUB_WEBHOOK_SECRET_ROOT"
     trigger: ""
-  - path: "hacktivity"
+  - path: "/hacktivity"
     type: "github"
     secret: "GITHUB_WEBHOOK_SECRET_HACKTIVITY"
+    trigger: ""
+  - path: "/test"
+    type: "github"
+    secret: "testtoken"
     trigger: ""
