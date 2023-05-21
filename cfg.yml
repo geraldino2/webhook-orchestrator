@@ -11,5 +11,5 @@ webhooks:
     trigger: ""
   - path: "/test"
     type: "github"
-    secret: "testtoken"
-    trigger: ""
+    secret: ""
+    trigger: "/Users/gabrielgeraldinosouza/website/webhook-orchestrator/x.sh 1"

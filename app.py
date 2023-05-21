@@ -1,4 +1,4 @@
-import os, hashlib, hmac
+import os, hashlib, hmac, subprocess
 
 from flask import Flask, request
 from yaml import load
@@ -13,6 +13,7 @@ cfg = load(CFG_STREAM, Loader=Loader)
 app = Flask(__name__)
 
 def exec_os_trigger(trigger: str) -> None:
+    subprocess.call(trigger.split())
     return None
 
 def verify_gh_signature(request: request, secret: str) -> bool:
