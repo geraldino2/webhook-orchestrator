@@ -41,6 +41,8 @@ def validate_request(hook: dict, request: request) -> bool:
 @app.route("/", methods=["GET","HEAD"])
 @app.route("/<path>", methods=["GET","HEAD"])
 def index(path: str = "") -> str:
+    if (path == "health"):
+        return ("healthy!", code=200)
     if (path in [k["path"] for k in cfg["webhooks"]]):
         return ("uh oh, method not allowed", 405)
     else:
